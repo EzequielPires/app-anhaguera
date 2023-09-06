@@ -7,7 +7,7 @@ void main() {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green, background: Colors.grey.shade100, surfaceTint: Colors.white),
       ),
       title: 'Prefeitura de anhaguera',
       home: const Home(),

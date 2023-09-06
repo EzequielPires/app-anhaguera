@@ -1,4 +1,6 @@
 import 'package:app_anhanguera/repositories/destinations.dart';
+import 'package:app_anhanguera/widgets/buttons/consult.dart';
+import 'package:app_anhanguera/widgets/sections/grid_home.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -23,197 +25,21 @@ class _HomeState extends State<Home> {
           elevation: 2,
           toolbarHeight: 72,
         ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-          child: GridView.count(
-            crossAxisCount: 3,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(6),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 2,
-                        offset: Offset(0, 2),
-                        spreadRadius: 0)
-                  ],
-                ),
-                child: const Text(
-                  'Denúncia Lotes Sujos',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(6),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 2,
-                        offset: Offset(0, 2),
-                        spreadRadius: 0)
-                  ],
-                ),
-                child: const Text(
-                  'Denúncia Lotes Sujos',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(6),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 2,
-                        offset: Offset(0, 2),
-                        spreadRadius: 0)
-                  ],
-                ),
-                child: const Text(
-                  'Denúncia Lotes Sujos',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(6),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 2,
-                        offset: Offset(0, 2),
-                        spreadRadius: 0)
-                  ],
-                ),
-                child: const Text(
-                  'Denúncia Lotes Sujos',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(6),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 2,
-                        offset: Offset(0, 2),
-                        spreadRadius: 0)
-                  ],
-                ),
-                child: const Text(
-                  'Denúncia Lotes Sujos',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(6),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 2,
-                        offset: Offset(0, 2),
-                        spreadRadius: 0)
-                  ],
-                ),
-                child: const Text(
-                  'Denúncia Lotes Sujos',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(6),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 2,
-                        offset: Offset(0, 2),
-                        spreadRadius: 0)
-                  ],
-                ),
-                child: const Text(
-                  'Denúncia Lotes Sujos',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(6),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 2,
-                        offset: Offset(0, 2),
-                        spreadRadius: 0)
-                  ],
-                ),
-                child: const Text(
-                  'Denúncia Lotes Sujos',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(6),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 2,
-                        offset: Offset(0, 2),
-                        spreadRadius: 0)
-                  ],
-                ),
-                child: const Text(
-                  'Denúncia Lotes Sujos',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-            ],
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+            child: const Column(
+              children: [
+                SectionGridHome(),
+                SizedBox(height: 24,),
+                ButtonConsult()
+              ],
+            ),
           ),
         ),
         drawer: Drawer(
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
           child: ListView.builder(
             itemCount: repository.destinations.length,
             itemBuilder: (context, index) {
@@ -224,8 +50,8 @@ class _HomeState extends State<Home> {
                   context: context,
                   builder: (context) => Dialog(
                     child: Container(
-                      padding: EdgeInsets.all(16),
-                      child: Text('Deu certo'),
+                      padding: const EdgeInsets.all(16),
+                      child: const Text('Deu certo'),
                     ),
                   ),
                 ),
