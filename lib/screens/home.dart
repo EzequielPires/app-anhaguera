@@ -1,5 +1,9 @@
+import 'package:app_anhanguera/models/category.dart';
 import 'package:app_anhanguera/repositories/destinations.dart';
 import 'package:app_anhanguera/widgets/buttons/consult.dart';
+import 'package:app_anhanguera/widgets/cards/action.dart';
+import 'package:app_anhanguera/widgets/cards/category.dart';
+import 'package:app_anhanguera/widgets/drawer_custom.dart';
 import 'package:app_anhanguera/widgets/sections/grid_home.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +15,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final DestinationRepository repository = DestinationRepository();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,36 +30,24 @@ class _HomeState extends State<Home> {
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-            child: const Column(
+            child: Column(
               children: [
-                SectionGridHome(),
-                SizedBox(height: 24,),
-                ButtonConsult()
+                const SectionGridHome(),
+                const SizedBox(height: 24,),
+                const ButtonConsult(),
+                const SizedBox(height: 24,),
+                Row(
+                  children: [
+                    CardAction(category: Category(id: 1, name: '', image: 'images/transp.png')),
+                    const SizedBox(width: 8,),
+                    CardAction(category: Category(id: 1, name: '', image: 'images/noticias.png'))
+                  ],
+                )
               ],
             ),
           ),
         ),
-        drawer: Drawer(
-          backgroundColor: Colors.white,
-          surfaceTintColor: Colors.white,
-          child: ListView.builder(
-            itemCount: repository.destinations.length,
-            itemBuilder: (context, index) {
-              return (ListTile(
-                title: Text(repository.destinations[index].label),
-                leading: repository.destinations[index].icon,
-                onTap: () => showDialog(
-                  context: context,
-                  builder: (context) => Dialog(
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      child: const Text('Deu certo'),
-                    ),
-                  ),
-                ),
-              ));
-            },
-          ),
-        ));
+        drawer: const DrawerCustom(),
+        );
   }
 }
