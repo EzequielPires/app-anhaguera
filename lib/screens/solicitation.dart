@@ -19,6 +19,7 @@ class _SolicitationPageState extends State<SolicitationPage> {
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController cep = TextEditingController();
+  TextEditingController description = TextEditingController();
 
   @override
   void initState() {
@@ -85,7 +86,7 @@ class _SolicitationPageState extends State<SolicitationPage> {
               const SizedBox(
                 height: 24,
               ),
-              TextareaField(controller: cep, label: 'Descrição', placeholder: 'Fale sobre a ocorrência',),
+              TextareaField(controller: description, label: 'Descrição', placeholder: 'Fale sobre a ocorrência',),
               const SizedBox(
                 height: 24,
               ),

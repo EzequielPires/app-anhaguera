@@ -1,5 +1,8 @@
+import 'package:app_anhanguera/services/address.dart';
 import 'package:app_anhanguera/widgets/inputs/text_field_primary.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class AddressForm extends StatefulWidget {
   final TextEditingController controller;
@@ -10,12 +13,29 @@ class AddressForm extends StatefulWidget {
 }
 
 class _AddressFormState extends State<AddressForm> {
-  late TextEditingController controller;
+  final AddressService _addressService = AddressService();
+  final TextEditingController cepController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  bool isCep = true;
+  bool isLoading = false;
+
+  Future<void> onChangeCep(String value) async {
+    if (value.length == 9) {
+      setState(() {
+        isLoading = true;
+      });
+      String? res = await _addressService.getCep(value);
+      setState(() {
+        addressController.text = res ?? '';
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    controller = widget.controller;
+    addressController = widget.controller;
   }
 
   @override
@@ -25,40 +45,103 @@ class _AddressFormState extends State<AddressForm> {
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Expanded(
-              child: TextFieldPrimary(
-                controller: controller,
-                label: 'Endereço com base no CEP:',
-                placeholder: 'Ex.: 75000-100',
-              ),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Container(
-              height: 64,
-              width: 64,
-              decoration: BoxDecoration(
-                  color: Colors.green, borderRadius: BorderRadius.circular(4)),
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search,
-                  color: Colors.white,
-                  size: 32,
-                ),
-              ),
-            ),
-          ],
+          children: isCep
+              ? [
+                  Expanded(
+                    child: TextFieldPrimary(
+                      controller: cepController,
+                      label: 'Endereço com base no CEP:',
+                      placeholder: 'Ex.: 75000-100',
+                      onChange: onChangeCep,
+                      formatter: [
+                        MaskTextInputFormatter(
+                            mask: '#####-###', filter: {'#': RegExp(r'[0-9]')})
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Container(
+                    height: 64,
+                    width: 64,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(4)),
+                    child: isLoading
+                        ? CircularProgressIndicator()
+                        : IconButton(
+                            onPressed: () =>
+                                onChangeCep(cepController.value.text),
+                            icon: const Icon(
+                              Icons.search,
+                              color: Colors.white,
+                              size: 32,
+                            ),
+                          ),
+                  ),
+                ]
+              : [
+                  Expanded(
+                    child: TextFieldPrimary(
+                      controller: cepController,
+                      label: 'Digite o endereço:',
+                      placeholder: 'Qual o endereço da solicitação',
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Container(
+                    height: 64,
+                    width: 64,
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(4)),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.search,
+                        color: Colors.white,
+                        size: 32,
+                      ),
+                    ),
+                  ),
+                ],
         ),
         const SizedBox(
-          width: 8,
+          height: 8,
         ),
         TextButton(
-          onPressed: () {},
-          child: const Text('Não sabe o CEP? Digite o endereço aqui'),
-        )
+          onPressed: () {
+            setState(() {
+              isCep = !isCep;
+            });
+          },
+          child: Text(
+              isCep ? 'Não sabe o CEP? Digite o endereço aqui' : 'Digitar CEP'),
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        addressController.text.isNotEmpty
+            ? Container(
+                decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(.05),
+                    borderRadius: BorderRadius.circular(4)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                child: Text(addressController.text),
+              )
+            : Container(
+                decoration: BoxDecoration(
+                    color: Colors.red.withOpacity(.1),
+                    borderRadius: BorderRadius.circular(4)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                child: const Text('CEP não encontrado', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
+              )
       ],
     );
   }

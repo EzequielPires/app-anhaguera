@@ -9,6 +9,8 @@ class TextFieldPrimary extends StatelessWidget {
   final bool obscureText;
   final bool? required;
   final List<TextInputFormatter>? formatter;
+  final Function(String value)? onComplete;
+  final Function(String value)? onChange;
 
   const TextFieldPrimary({
     super.key,
@@ -18,6 +20,8 @@ class TextFieldPrimary extends StatelessWidget {
     this.required,
     this.formatter,
     this.placeholder,
+    this.onComplete,
+    this.onChange
   });
 
   @override
@@ -40,10 +44,12 @@ class TextFieldPrimary extends StatelessWidget {
           },
           controller: controller,
           inputFormatters: formatter,
+          onEditingComplete: () => onComplete != null ? onComplete!(controller.value.text) : null,
+          onChanged: (String value) => onChange != null ? onChange!(value) : null,
           obscureText: obscureText,
           decoration: InputDecoration(
             hintText: placeholder ?? '',
-            hintStyle: TextStyle(fontWeight: FontWeight.w400, color: Colors.black38),
+            hintStyle: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black38),
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black12),
             ),
