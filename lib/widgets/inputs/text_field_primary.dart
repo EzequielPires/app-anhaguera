@@ -44,7 +44,6 @@ class TextFieldPrimary extends StatelessWidget {
           },
           controller: controller,
           inputFormatters: formatter,
-          onEditingComplete: () => onComplete != null ? onComplete!(controller.value.text) : null,
           onChanged: (String value) => onChange != null ? onChange!(value) : null,
           obscureText: obscureText,
           decoration: InputDecoration(

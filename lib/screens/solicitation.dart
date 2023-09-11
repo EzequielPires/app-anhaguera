@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:app_anhanguera/models/category.dart';
 import 'package:app_anhanguera/widgets/addess_form.dart';
+import 'package:app_anhanguera/widgets/buttons/image_picker.dart';
 import 'package:app_anhanguera/widgets/buttons/primary.dart';
 import 'package:app_anhanguera/widgets/inputs/text_field_primary.dart';
 import 'package:app_anhanguera/widgets/inputs/textarea_field.dart';
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class SolicitationPage extends StatefulWidget {
   final Category category;
@@ -15,6 +19,9 @@ class SolicitationPage extends StatefulWidget {
 
 class _SolicitationPageState extends State<SolicitationPage> {
   late Category category;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _isButtonDisabled = true;
+  List<File> files = [];
   TextEditingController name = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -44,57 +51,135 @@ class _SolicitationPageState extends State<SolicitationPage> {
         elevation: 2,
         toolbarHeight: 72,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Faça sua solicitação:',
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Faça sua solicitação:',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    TextFieldPrimary(
+                      controller: name,
+                      label: 'Nome completo:',
+                      placeholder: 'Qual seu nome completo?',
+                      required: true,
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    TextFieldPrimary(
+                      controller: phone,
+                      label: 'Telefone:',
+                      placeholder: '(99) 99999-9999',
+                      required: true,
+                      formatter: [
+                        MaskTextInputFormatter(
+                            mask: '(##) #####-####', filter: {'#': RegExp(r'[0-9]')})
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    TextFieldPrimary(
+                      controller: email,
+                      label: 'E-mail:',
+                      placeholder: 'Qual o seu e-mail?',
+                      required: true,
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    AddressForm(
+                      controller: cep,
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    TextareaField(
+                      controller: description,
+                      label: 'Descrição',
+                      placeholder: 'Fale sobre a ocorrência',
+                      required: true,
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.only(right: 16, left: 16, bottom: 6),
+              child: const Text(
+                'Envie fotos do local da ocorrência de sua solicitação:',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
-              const SizedBox(
-                height: 24,
-              ),
-              TextFieldPrimary(
-                controller: name,
-                label: 'Nome completo:',
-                placeholder: 'Qual seu nome completo?',
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              TextFieldPrimary(
-                controller: phone,
-                label: 'Telefone:',
-                placeholder: '(99) 99999-9999',
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              TextFieldPrimary(
-                controller: email,
-                label: 'E-mail:',
-                placeholder: 'Qual o seu e-mail?',
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              AddressForm(controller: cep),
-              const SizedBox(
-                height: 24,
-              ),
-              TextareaField(controller: description, label: 'Descrição', placeholder: 'Fale sobre a ocorrência',),
-              const SizedBox(
-                height: 24,
-              ),
-              const ButtonPrimary(title: 'ENVIAR'),
-            ],
+            ),
           ),
-        ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            sliver: SliverGrid.count(
+              crossAxisCount: 3,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              children: [
+                ...files.map((image) => Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Image.file(image, fit: BoxFit.cover),
+                    )),
+                ButtonImagePicker(
+                  onImageSelected: (file) {
+                    setState(() {
+                      files.add(file);
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  ButtonPrimary(
+                    title: 'ENVIAR',
+                    onPressed: onSubmit,
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
+  }
+
+  Future<void> onSubmit() async {
+    final form = _formKey.currentState;
+    if(form != null && form.validate()) {
+
+    }
   }
 }

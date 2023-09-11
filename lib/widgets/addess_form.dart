@@ -6,7 +6,9 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class AddressForm extends StatefulWidget {
   final TextEditingController controller;
-  const AddressForm({super.key, required this.controller});
+  final Function(String value)? onChange;
+
+  const AddressForm({super.key, required this.controller, this.onChange});
 
   @override
   State<AddressForm> createState() => _AddressFormState();
@@ -15,8 +17,10 @@ class AddressForm extends StatefulWidget {
 class _AddressFormState extends State<AddressForm> {
   final AddressService _addressService = AddressService();
   final TextEditingController cepController = TextEditingController();
+  late final Function(String value)? onChange;
   TextEditingController addressController = TextEditingController();
   bool isCep = true;
+  bool cepNotFound = false;
   bool isLoading = false;
 
   Future<void> onChangeCep(String value) async {
@@ -25,8 +29,12 @@ class _AddressFormState extends State<AddressForm> {
         isLoading = true;
       });
       String? res = await _addressService.getCep(value);
+      if (onChange != null) {
+        onChange!(value);
+      }
       setState(() {
         addressController.text = res ?? '';
+        cepNotFound = res == null ? true : false;
         isLoading = false;
       });
     }
@@ -36,6 +44,7 @@ class _AddressFormState extends State<AddressForm> {
   void initState() {
     super.initState();
     addressController = widget.controller;
+    onChange = widget.onChange;
   }
 
   @override
@@ -57,6 +66,7 @@ class _AddressFormState extends State<AddressForm> {
                         MaskTextInputFormatter(
                             mask: '#####-###', filter: {'#': RegExp(r'[0-9]')})
                       ],
+                      required: true,
                     ),
                   ),
                   const SizedBox(
@@ -70,7 +80,7 @@ class _AddressFormState extends State<AddressForm> {
                         color: Colors.green,
                         borderRadius: BorderRadius.circular(4)),
                     child: isLoading
-                        ? CircularProgressIndicator()
+                        ? const CircularProgressIndicator()
                         : IconButton(
                             onPressed: () =>
                                 onChangeCep(cepController.value.text),
@@ -85,9 +95,10 @@ class _AddressFormState extends State<AddressForm> {
               : [
                   Expanded(
                     child: TextFieldPrimary(
-                      controller: cepController,
+                      controller: addressController,
                       label: 'Digite o endereço:',
                       placeholder: 'Qual o endereço da solicitação',
+                      required: true,
                     ),
                   ),
                   const SizedBox(
@@ -134,14 +145,21 @@ class _AddressFormState extends State<AddressForm> {
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 child: Text(addressController.text),
               )
-            : Container(
+            : Container(),
+        cepNotFound
+            ? Container(
                 decoration: BoxDecoration(
                     color: Colors.red.withOpacity(.1),
                     borderRadius: BorderRadius.circular(4)),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                child: const Text('CEP não encontrado', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
+                child: const Text(
+                  'CEP não encontrado',
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                ),
               )
+            : Container()
       ],
     );
   }

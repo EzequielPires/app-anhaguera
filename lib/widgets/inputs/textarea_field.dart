@@ -8,6 +8,7 @@ class TextareaField extends StatelessWidget {
   final TextEditingController controller;
   final bool obscureText;
   final bool? required;
+  final Function(String value)? onChange;
   final List<TextInputFormatter>? formatter;
 
   const TextareaField({
@@ -18,6 +19,7 @@ class TextareaField extends StatelessWidget {
     this.required,
     this.formatter,
     this.placeholder,
+    this.onChange
   });
 
   @override
@@ -42,9 +44,10 @@ class TextareaField extends StatelessWidget {
           controller: controller,
           inputFormatters: formatter,
           obscureText: obscureText,
+          onChanged: (String value) => onChange != null ? onChange!(value) : null,
           decoration: InputDecoration(
             hintText: placeholder ?? '',
-            hintStyle: TextStyle(fontWeight: FontWeight.w400, color: Colors.black38),
+            hintStyle: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black38),
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black12),
             ),
