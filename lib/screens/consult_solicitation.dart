@@ -26,8 +26,6 @@ class _ConsultSolicitationState extends State<ConsultSolicitation> {
 
     final response = await repository.findByProtocol(controller.value.text);
 
-    print(response);
-
     if (response != null) {
       setState(() {
         solicitation = response;

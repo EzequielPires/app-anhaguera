@@ -9,26 +9,22 @@ class DrawerCustom extends StatelessWidget {
     final DestinationRepository repository = DestinationRepository();
 
     return Drawer(
-          backgroundColor: Colors.white,
-          surfaceTintColor: Colors.white,
-          child: ListView.builder(
-            itemCount: repository.destinations.length,
-            itemBuilder: (context, index) {
-              return (ListTile(
-                title: Text(repository.destinations[index].label),
-                leading: repository.destinations[index].icon,
-                onTap: () => showDialog(
-                  context: context,
-                  builder: (context) => Dialog(
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      child: const Text('Deu certo'),
-                    ),
-                  ),
-                ),
-              ));
-            },
-          ),
-        );
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
+      child: ListView.builder(
+        itemCount: repository.destinations.length,
+        itemBuilder: (context, index) {
+          final destination = repository.destinations[index];
+          return (ListTile(
+            title: Text(destination.label),
+            leading: destination.icon,
+            onTap: () => destination.page != null
+                ? Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => destination.page!))
+                : null,
+          ));
+        },
+      ),
+    );
   }
 }

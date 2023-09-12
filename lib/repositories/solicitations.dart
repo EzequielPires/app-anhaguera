@@ -16,7 +16,7 @@ class SolicitationsRepository {
       final response = await dio.get(
           'https://solicitacoes.catalao.go.gov.br/api/solicitation/$protocol/protocol');
 
-      print(response.data['protocol']);
+      if(response.data['protocol'] == null) return null;
 
       final solicitation = Solicitation.fromJson(response.data);
       return solicitation;
