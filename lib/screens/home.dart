@@ -38,9 +38,9 @@ class _HomeState extends State<Home> {
                 const SizedBox(height: 24,),
                 Row(
                   children: [
-                    CardAction(category: Category(id: 1, name: '', image: 'images/transp.png')),
+                    CardAction(category: Category(id: 1, name: '', image: 'images/transp.png'), url: 'https://anhanguera.megasofttransparencia.com.br/',),
                     const SizedBox(width: 8,),
-                    CardAction(category: Category(id: 1, name: '', image: 'images/noticias.png'))
+                    CardAction(category: Category(id: 1, name: '', image: 'images/noticias.png'), url: 'https://anhanguera.go.gov.br/Noticias,NT.html',)
                   ],
                 )
               ],

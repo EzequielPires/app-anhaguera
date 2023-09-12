@@ -1,3 +1,4 @@
+import 'package:app_anhanguera/screens/consult_solicitation.dart';
 import 'package:flutter/material.dart';
 
 class ButtonConsult extends StatelessWidget {
@@ -9,7 +10,7 @@ class ButtonConsult extends StatelessWidget {
       height: 56,
       width: double.infinity,
       child: FilledButton(
-        onPressed: () {},
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ConsultSolicitation())),
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))

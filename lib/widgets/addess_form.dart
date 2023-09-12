@@ -52,86 +52,95 @@ class _AddressFormState extends State<AddressForm> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: isCep
-              ? [
-                  Expanded(
-                    child: TextFieldPrimary(
-                      controller: cepController,
-                      label: 'Endereço com base no CEP:',
-                      placeholder: 'Ex.: 75000-100',
-                      onChange: onChangeCep,
-                      formatter: [
-                        MaskTextInputFormatter(
-                            mask: '#####-###', filter: {'#': RegExp(r'[0-9]')})
-                      ],
-                      required: true,
-                    ),
+        isCep
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Endereço com base no CEP:',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
-                    width: 8,
+                    height: 6,
                   ),
-                  Container(
-                    height: 64,
-                    width: 64,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(4)),
-                    child: isLoading
-                        ? const CircularProgressIndicator()
-                        : IconButton(
-                            onPressed: () =>
-                                onChangeCep(cepController.value.text),
-                            icon: const Icon(
-                              Icons.search,
-                              color: Colors.white,
-                              size: 32,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value == '' || value == null) {
+                              return 'Preencha um valor';
+                            }
+                          },
+                          controller: cepController,
+                          inputFormatters: [
+                            MaskTextInputFormatter(
+                                mask: '#####-###',
+                                filter: {'#': RegExp(r'[0-9]')})
+                          ],
+                          onChanged: (String value) =>
+                              onChange != null ? onChange!(value) : null,
+                          decoration: const InputDecoration(
+                            hintText: 'Ex.: 75000-100',
+                            hintStyle: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black38),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black12),
                             ),
+                            border: OutlineInputBorder(),
                           ),
-                  ),
-                ]
-              : [
-                  Expanded(
-                    child: TextFieldPrimary(
-                      controller: addressController,
-                      label: 'Digite o endereço:',
-                      placeholder: 'Qual o endereço da solicitação',
-                      required: true,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Container(
-                    height: 64,
-                    width: 64,
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(4)),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.search,
-                        color: Colors.white,
-                        size: 32,
+                        ),
                       ),
-                    ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Container(
+                        height: 64,
+                        width: 64,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(4)),
+                        child: isLoading
+                            ? const CircularProgressIndicator()
+                            : IconButton(
+                                onPressed: () =>
+                                    onChangeCep(cepController.value.text),
+                                icon: const Icon(
+                                  Icons.search,
+                                  color: Colors.white,
+                                  size: 32,
+                                ),
+                              ),
+                      ),
+                    ],
                   ),
                 ],
-        ),
+              )
+            : TextFieldPrimary(
+                controller: addressController,
+                label: 'Digite o endereço:',
+                placeholder: 'Qual o endereço da solicitação',
+                required: true,
+              ),
         const SizedBox(
           height: 8,
         ),
-        TextButton(
-          onPressed: () {
+        InkWell(
+          onTap: () {
             setState(() {
               isCep = !isCep;
             });
           },
           child: Text(
-              isCep ? 'Não sabe o CEP? Digite o endereço aqui' : 'Digitar CEP'),
+            isCep ? 'Não sabe o CEP? Digite o endereço aqui' : 'Digitar CEP',
+            style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Colors.green.shade700),
+          ),
         ),
         const SizedBox(
           height: 8,
