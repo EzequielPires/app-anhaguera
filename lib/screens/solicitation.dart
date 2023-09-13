@@ -20,7 +20,6 @@ class SolicitationPage extends StatefulWidget {
 class _SolicitationPageState extends State<SolicitationPage> {
   late Category category;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool _isButtonDisabled = true;
   List<File> files = [];
   TextEditingController name = TextEditingController();
   TextEditingController phone = TextEditingController();
