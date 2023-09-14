@@ -11,4 +11,12 @@ class Requester {
       email: json['email'].toString().trim(),
     );
   }
+
+  toJson() {
+    return {
+      'nome': name,
+      'email': email,
+      'phone': phone,
+    };
+  }
 }

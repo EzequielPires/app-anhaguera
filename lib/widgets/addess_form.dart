@@ -79,8 +79,7 @@ class _AddressFormState extends State<AddressForm> {
                                 mask: '#####-###',
                                 filter: {'#': RegExp(r'[0-9]')})
                           ],
-                          onChanged: (String value) =>
-                              onChange != null ? onChange!(value) : null,
+                          onChanged: onChangeCep,
                           decoration: const InputDecoration(
                             hintText: 'Ex.: 75000-100',
                             hintStyle: TextStyle(

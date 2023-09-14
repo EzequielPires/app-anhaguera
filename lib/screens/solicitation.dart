@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:app_anhanguera/models/category.dart';
+import 'package:app_anhanguera/models/requester.dart';
+import 'package:app_anhanguera/models/solicitation.dart';
+import 'package:app_anhanguera/repositories/solicitations.dart';
 import 'package:app_anhanguera/widgets/addess_form.dart';
 import 'package:app_anhanguera/widgets/buttons/image_picker.dart';
 import 'package:app_anhanguera/widgets/buttons/primary.dart';
@@ -24,7 +27,7 @@ class _SolicitationPageState extends State<SolicitationPage> {
   TextEditingController name = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
-  TextEditingController cep = TextEditingController();
+  TextEditingController address = TextEditingController();
   TextEditingController description = TextEditingController();
 
   @override
@@ -85,7 +88,8 @@ class _SolicitationPageState extends State<SolicitationPage> {
                       required: true,
                       formatter: [
                         MaskTextInputFormatter(
-                            mask: '(##) #####-####', filter: {'#': RegExp(r'[0-9]')})
+                            mask: '(##) #####-####',
+                            filter: {'#': RegExp(r'[0-9]')})
                       ],
                     ),
                     const SizedBox(
@@ -101,7 +105,7 @@ class _SolicitationPageState extends State<SolicitationPage> {
                       height: 24,
                     ),
                     AddressForm(
-                      controller: cep,
+                      controller: address,
                     ),
                     const SizedBox(
                       height: 24,
@@ -177,8 +181,20 @@ class _SolicitationPageState extends State<SolicitationPage> {
 
   Future<void> onSubmit() async {
     final form = _formKey.currentState;
-    if(form != null && form.validate()) {
+    if (form != null && form.validate()) {
+      final repository = SolicitationsRepository();
 
+      Requester requester =
+          Requester(name: name.text, phone: phone.text, email: email.text);
+      Solicitation solicitation = Solicitation(
+          requester: requester,
+          type: category,
+          address: address.text,
+          description: description.text,
+          images: files);
+      
+      final res = await repository.create(solicitation);
+      print(res);
     }
   }
 }
