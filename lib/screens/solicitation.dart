@@ -4,6 +4,7 @@ import 'package:app_anhanguera/models/category.dart';
 import 'package:app_anhanguera/models/requester.dart';
 import 'package:app_anhanguera/models/solicitation.dart';
 import 'package:app_anhanguera/repositories/solicitations.dart';
+import 'package:app_anhanguera/screens/success.dart';
 import 'package:app_anhanguera/widgets/addess_form.dart';
 import 'package:app_anhanguera/widgets/buttons/image_picker.dart';
 import 'package:app_anhanguera/widgets/buttons/primary.dart';
@@ -23,6 +24,7 @@ class SolicitationPage extends StatefulWidget {
 class _SolicitationPageState extends State<SolicitationPage> {
   late Category category;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
   List<File> files = [];
   TextEditingController name = TextEditingController();
   TextEditingController phone = TextEditingController();
@@ -168,6 +170,7 @@ class _SolicitationPageState extends State<SolicitationPage> {
                   ),
                   ButtonPrimary(
                     title: 'ENVIAR',
+                    isLoading: isLoading,
                     onPressed: onSubmit,
                   ),
                 ],
@@ -183,6 +186,9 @@ class _SolicitationPageState extends State<SolicitationPage> {
     final form = _formKey.currentState;
     if (form != null && form.validate()) {
       final repository = SolicitationsRepository();
+      setState(() {
+        isLoading = true;
+      });
 
       Requester requester =
           Requester(name: name.text, phone: phone.text, email: email.text);
@@ -194,7 +200,12 @@ class _SolicitationPageState extends State<SolicitationPage> {
           images: files);
       
       final res = await repository.create(solicitation);
-      print(res);
+      if(res is Solicitation) {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SuccessPage(solicitation: res),));
+      }
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 }

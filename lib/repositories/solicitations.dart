@@ -25,9 +25,9 @@ class SolicitationsRepository {
 
       Dio dio = Dio();
       dio.options.headers["authorization"] =
-          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImRldmVsb3BlckBwb3J0YWxjYXRhbGFvLmNvbS5iciJ9.-Q1nCwbVz9MaaU5UuRH8g_GehmQ8CHHwpVbQBeYZegc";
+          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InJvZ2VyQHBvcnRhbGNhdGFsYW8uY29tLmJyIn0.gR9PXl_opEacvUAjfijshVNrJ3xBjgMMAVc41bHOv5c";
       final response = await dio.post(
-          'http://192.168.0.29:8000/api/solicitation/create',
+          'https://solicitacoes.catalao.go.gov.br/api/solicitation/create',
           data: formData);
       solicitation = Solicitation.fromJson(response.data);
 
