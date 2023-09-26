@@ -8,18 +8,14 @@ class SectionGridHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 400,
-      child: GridView.count(
-            physics: const NeverScrollableScrollPhysics(),
-            childAspectRatio: .9,
-            crossAxisCount: 3,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            children: [
-              ...categories.map((category) => CardCategory(category: category))
-            ],
-          ),
+    return SliverGrid.count(
+      childAspectRatio: .9,
+      crossAxisCount: 3,
+      mainAxisSpacing: 8,
+      crossAxisSpacing: 8,
+      children: [
+        ...categories.map((category) => CardCategory(category: category))
+      ],
     );
   }
 }

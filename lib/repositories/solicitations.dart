@@ -24,10 +24,10 @@ class SolicitationsRepository {
       }
 
       Dio dio = Dio();
-      dio.options.headers["authorization"] =
-          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InJvZ2VyQHBvcnRhbGNhdGFsYW8uY29tLmJyIn0.gR9PXl_opEacvUAjfijshVNrJ3xBjgMMAVc41bHOv5c";
+      dio.options.headers["Authorization-X"] =
+          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImRldmVsb3BlckBwb3J0YWxjYXRhbGFvLmNvbS5iciJ9.-Q1nCwbVz9MaaU5UuRH8g_GehmQ8CHHwpVbQBeYZegc";
       final response = await dio.post(
-          'https://solicitacoes.catalao.go.gov.br/api/solicitation/create',
+          'https://solicitacoes.anhanguera.go.gov.br/api/solicitation/create',
           data: formData);
       solicitation = Solicitation.fromJson(response.data);
 
@@ -41,10 +41,10 @@ class SolicitationsRepository {
   Future<Solicitation?> findByProtocol(String protocol) async {
     try {
       Dio dio = Dio();
-      dio.options.headers["authorization"] =
-          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InJvZ2VyQHBvcnRhbGNhdGFsYW8uY29tLmJyIn0.gR9PXl_opEacvUAjfijshVNrJ3xBjgMMAVc41bHOv5c";
+      dio.options.headers["Authorization-X"] =
+          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImRldmVsb3BlckBwb3J0YWxjYXRhbGFvLmNvbS5iciJ9.-Q1nCwbVz9MaaU5UuRH8g_GehmQ8CHHwpVbQBeYZegc";
       final response = await dio.get(
-          'https://solicitacoes.catalao.go.gov.br/api/solicitation/$protocol/protocol');
+          'https://solicitacoes.anhanguera.go.gov.br/api/solicitation/$protocol/protocol');
 
       if (response.data['protocol'] == null) return null;
 
