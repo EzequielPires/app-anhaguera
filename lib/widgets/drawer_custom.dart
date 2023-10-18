@@ -1,4 +1,4 @@
-import 'package:app_anhanguera/repositories/destinations.dart';
+import 'package:anhangueraonline/repositories/destinations.dart';
 import 'package:flutter/material.dart';
 
 class DrawerCustom extends StatelessWidget {

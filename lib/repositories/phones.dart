@@ -1,7 +1,18 @@
-import 'package:app_anhanguera/models/phone.dart';
+import 'package:anhangueraonline/models/phone.dart';
 
 class PhonesRepository {
   List<Phone> phones = [
+    Phone(name: 'Escola Municipal', value: '(64) 3469-1175'),
+    Phone(name: 'Sec. de Educação', value: '(64) 3469-1140'),
+    Phone(name: 'Sec. de Saúde', value: '(64) 3469-1151'),
+    Phone(name: 'Assistência Social', value: '(64) 3469-1146'),
+    Phone(name: 'Conselho Tutelar', value: '(64) 3469-1149'),
+    Phone(name: 'Conselho Tutelar Whatsapp', value: '(64) 99984-1687'),
+    Phone(name: 'UBS', value: '(64) 3469-1184'),
+    Phone(name: 'Câmara Municipal', value: '(64) 3469-1120'),
+  ];
+
+  /* List<Phone> phones = [
     Phone(
       name: 'Aterro Sanitário',
       value: '(64) 3441-2081',
@@ -130,5 +141,5 @@ class PhonesRepository {
       name: 'Bombeiros',
       value: '(64) 3441-2081',
     ),
-  ];
+  ]; */
 }

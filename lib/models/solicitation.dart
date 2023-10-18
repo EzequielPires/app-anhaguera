@@ -1,5 +1,5 @@
-import 'package:app_anhanguera/models/category.dart';
-import 'package:app_anhanguera/models/requester.dart';
+import 'package:anhangueraonline/models/category.dart';
+import 'package:anhangueraonline/models/requester.dart';
 
 class Solicitation {
   String? id;

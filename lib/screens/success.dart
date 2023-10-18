@@ -1,6 +1,6 @@
-import 'package:app_anhanguera/models/solicitation.dart';
-import 'package:app_anhanguera/screens/home.dart';
-import 'package:app_anhanguera/screens/solicitation.dart';
+import 'package:anhangueraonline/models/solicitation.dart';
+import 'package:anhangueraonline/screens/home.dart';
+import 'package:anhangueraonline/screens/solicitation.dart';
 import 'package:flutter/material.dart';
 
 class SuccessPage extends StatelessWidget {

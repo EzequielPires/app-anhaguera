@@ -1,4 +1,4 @@
-package com.example.app_anhanguera
+package com.example.anhangueraonline
 
 import io.flutter.embedding.android.FlutterActivity
 

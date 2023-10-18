@@ -1,4 +1,4 @@
-import 'package:app_anhanguera/screens/consult_solicitation.dart';
+import 'package:anhangueraonline/screens/consult_solicitation.dart';
 import 'package:flutter/material.dart';
 
 class ButtonConsult extends StatelessWidget {

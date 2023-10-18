@@ -1,5 +1,5 @@
-import 'package:app_anhanguera/repositories/phones.dart';
-import 'package:app_anhanguera/widgets/cards/phone.dart';
+import 'package:anhangueraonline/repositories/phones.dart';
+import 'package:anhangueraonline/widgets/cards/phone.dart';
 import 'package:flutter/material.dart';
 
 class PhonesPage extends StatefulWidget {

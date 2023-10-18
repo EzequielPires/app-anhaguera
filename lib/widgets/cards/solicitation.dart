@@ -1,4 +1,4 @@
-import 'package:app_anhanguera/models/solicitation.dart';
+import 'package:anhangueraonline/models/solicitation.dart';
 import 'package:flutter/material.dart';
 
 class CardSolicitation extends StatelessWidget {

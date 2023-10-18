@@ -1,4 +1,4 @@
-import 'package:app_anhanguera/models/phone.dart';
+import 'package:anhangueraonline/models/phone.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

@@ -1,5 +1,5 @@
-import 'package:app_anhanguera/services/address.dart';
-import 'package:app_anhanguera/widgets/inputs/text_field_primary.dart';
+import 'package:anhangueraonline/services/address.dart';
+import 'package:anhangueraonline/widgets/inputs/text_field_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';

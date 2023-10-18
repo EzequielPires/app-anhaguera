@@ -1,6 +1,6 @@
-import 'package:app_anhanguera/models/solicitation.dart';
-import 'package:app_anhanguera/repositories/solicitations.dart';
-import 'package:app_anhanguera/widgets/cards/solicitation.dart';
+import 'package:anhangueraonline/models/solicitation.dart';
+import 'package:anhangueraonline/repositories/solicitations.dart';
+import 'package:anhangueraonline/widgets/cards/solicitation.dart';
 import 'package:flutter/material.dart';
 
 class ConsultSolicitation extends StatefulWidget {

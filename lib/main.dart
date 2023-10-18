@@ -1,4 +1,4 @@
-import 'package:app_anhanguera/screens/home.dart';
+import 'package:anhangueraonline/screens/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {

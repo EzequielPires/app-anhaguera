@@ -1,10 +1,10 @@
-import 'package:app_anhanguera/models/category.dart';
-import 'package:app_anhanguera/repositories/destinations.dart';
-import 'package:app_anhanguera/widgets/buttons/consult.dart';
-import 'package:app_anhanguera/widgets/cards/action.dart';
-import 'package:app_anhanguera/widgets/cards/category.dart';
-import 'package:app_anhanguera/widgets/drawer_custom.dart';
-import 'package:app_anhanguera/widgets/sections/grid_home.dart';
+import 'package:anhangueraonline/models/category.dart';
+import 'package:anhangueraonline/repositories/destinations.dart';
+import 'package:anhangueraonline/widgets/buttons/consult.dart';
+import 'package:anhangueraonline/widgets/cards/action.dart';
+import 'package:anhangueraonline/widgets/cards/category.dart';
+import 'package:anhangueraonline/widgets/drawer_custom.dart';
+import 'package:anhangueraonline/widgets/sections/grid_home.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {

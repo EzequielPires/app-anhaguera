@@ -1,4 +1,4 @@
-import 'package:app_anhanguera/models/category.dart';
+import 'package:anhangueraonline/models/category.dart';
 
 List<Category> categories = [
   Category(name: 'Denúncia Lotes Sujos', image: 'images/trator.png', id: 1),

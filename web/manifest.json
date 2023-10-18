@@ -1,6 +1,6 @@
 {
-    "name": "app_anhanguera",
-    "short_name": "app_anhanguera",
+    "name": "anhangueraonline",
+    "short_name": "anhangueraonline",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

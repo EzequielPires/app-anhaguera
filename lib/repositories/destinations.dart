@@ -1,8 +1,8 @@
-import 'package:app_anhanguera/models/destination.dart';
-import 'package:app_anhanguera/screens/about.dart';
-import 'package:app_anhanguera/screens/consult_solicitation.dart';
-import 'package:app_anhanguera/screens/phones.dart';
-import 'package:app_anhanguera/screens/policy.dart';
+import 'package:anhangueraonline/models/destination.dart';
+import 'package:anhangueraonline/screens/about.dart';
+import 'package:anhangueraonline/screens/consult_solicitation.dart';
+import 'package:anhangueraonline/screens/phones.dart';
+import 'package:anhangueraonline/screens/policy.dart';
 import 'package:flutter/material.dart';
 
 class DestinationRepository {

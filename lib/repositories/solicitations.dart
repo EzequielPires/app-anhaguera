@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:app_anhanguera/models/category.dart';
-import 'package:app_anhanguera/models/requester.dart';
-import 'package:app_anhanguera/models/solicitation.dart';
+import 'package:anhangueraonline/models/category.dart';
+import 'package:anhangueraonline/models/requester.dart';
+import 'package:anhangueraonline/models/solicitation.dart';
 import 'package:dio/dio.dart';
 
 class SolicitationsRepository {

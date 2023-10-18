@@ -1,5 +1,5 @@
-import 'package:app_anhanguera/models/category.dart';
-import 'package:app_anhanguera/screens/solicitation.dart';
+import 'package:anhangueraonline/models/category.dart';
+import 'package:anhangueraonline/screens/solicitation.dart';
 import 'package:flutter/material.dart';
 
 class CardCategory extends StatelessWidget {
