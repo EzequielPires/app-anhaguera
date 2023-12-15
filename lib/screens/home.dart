@@ -1,6 +1,8 @@
 import 'package:anhangueraonline/models/category.dart';
 import 'package:anhangueraonline/repositories/destinations.dart';
+import 'package:anhangueraonline/screens/publications.dart';
 import 'package:anhangueraonline/widgets/buttons/consult.dart';
+import 'package:anhangueraonline/widgets/buttons/secondary.dart';
 import 'package:anhangueraonline/widgets/cards/action.dart';
 import 'package:anhangueraonline/widgets/cards/category.dart';
 import 'package:anhangueraonline/widgets/drawer_custom.dart';
@@ -61,7 +63,22 @@ class _HomeState extends State<Home> {
                         url: 'https://anhanguera.go.gov.br/Noticias,NT.html',
                       )
                     ],
-                  )
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  ButtonSecondary(
+                    title: 'Últimas notícias',
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PublicationsPage(),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
                 ],
               ),
             ),
