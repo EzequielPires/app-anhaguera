@@ -17,7 +17,6 @@ class _PublicationsPageState extends State<PublicationsPage> {
 
   Future<void> findProperties() async {
     var res = await publicationsRepository.findAll();
-    print(res.length);
     setState(() {
       publications = res;
     });
