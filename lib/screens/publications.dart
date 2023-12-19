@@ -44,7 +44,7 @@ class _PublicationsPageState extends State<PublicationsPage> {
         elevation: 2,
         toolbarHeight: 72,
       ),
-      body: ListView.builder(
+      body: publications.isEmpty ? const CardPublicationSk() : ListView.builder(
         itemCount: publications.length,
         itemBuilder: (context, index) => CardPublication(publication: publications[index],),
       ),

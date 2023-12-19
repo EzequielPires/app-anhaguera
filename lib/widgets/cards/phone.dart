@@ -46,7 +46,7 @@ class CardPhone extends StatelessWidget {
 
   _launchPhone() async {
     final phoneNumber = Uri.parse(
-        'tel:${phone.value}'); // Substitua pelo número de telefone desejado
+        'tel:${phone.value}');
     if (await canLaunchUrl(phoneNumber)) {
       await launchUrl(phoneNumber);
     } else {

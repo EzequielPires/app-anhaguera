@@ -1,6 +1,7 @@
 import 'package:anhangueraonline/models/publication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:intl/intl.dart';
 
 class PublicationViewPage extends StatefulWidget {
   final Publication publication;
@@ -12,10 +13,13 @@ class PublicationViewPage extends StatefulWidget {
 
 class _PublicationViewPageState extends State<PublicationViewPage> {
   late final Publication publication;
+  late final String formattedDate;
 
   @override
   void initState() {
     publication = widget.publication;
+    var date = DateTime.parse(publication.publish_at);
+    formattedDate = DateFormat('dd/MM/yyyy').format(date);
     super.initState();
   }
 
@@ -63,11 +67,16 @@ class _PublicationViewPageState extends State<PublicationViewPage> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                                 color: Colors.black87)),
+                        Text(formattedDate != null ? 'Publicado em $formattedDate' : '',
+                            style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black87)),
                       ],
                     ),
                   ),
                   Image.network(
-                    'https://blog.imaginie.com.br/wp-content/uploads/2020/05/noticia.jpg',
+                    'http://developer.anhanguera.go.gov.br/storage/${publication.thumbnail}',
                     height: 264,
                     fit: BoxFit.cover,
                   ),

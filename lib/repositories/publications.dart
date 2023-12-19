@@ -9,6 +9,8 @@ class PublicationsRepository {
       var response =
           await _dio.get('http://192.168.0.138:8000/api/publications');
 
+      print(response);
+
       if (response.data['success']) {
         var results = response.data['results'] as List;
 
@@ -20,6 +22,7 @@ class PublicationsRepository {
         return [];
       }
     } catch (error) {
+      print(error);
       return [];
     }
   }

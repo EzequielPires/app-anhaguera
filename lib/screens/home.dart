@@ -6,6 +6,7 @@ import 'package:anhangueraonline/widgets/buttons/secondary.dart';
 import 'package:anhangueraonline/widgets/cards/action.dart';
 import 'package:anhangueraonline/widgets/cards/category.dart';
 import 'package:anhangueraonline/widgets/drawer_custom.dart';
+import 'package:anhangueraonline/widgets/sections/grid_documents_category.dart';
 import 'package:anhangueraonline/widgets/sections/grid_home.dart';
 import 'package:flutter/material.dart';
 
@@ -76,13 +77,14 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
                 ],
               ),
             ),
           ),
+          SliverPadding(
+            padding: const EdgeInsets.only(left: 16, bottom: 24, right: 16),
+            sliver: SectionGridDocumentsCategories(),
+          )
         ],
       ),
       drawer: const DrawerCustom(),
