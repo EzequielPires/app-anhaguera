@@ -86,6 +86,9 @@ flutter:
     - images/contratos.png
     - images/dispensas.png
     - images/convenios.png
+    - images/animais.png
+    - images/cacamba.png
+    - images/social.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
