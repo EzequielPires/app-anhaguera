@@ -53,6 +53,7 @@ class TextFieldPrimary extends StatelessWidget {
               borderSide: BorderSide(color: Colors.black12),
             ),
             border: const OutlineInputBorder(),
+            contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           ),
         )
       ],

@@ -1,5 +1,9 @@
 import 'package:anhangueraonline/models/document_category.dart';
+import 'package:anhangueraonline/models/licitation.dart';
+import 'package:anhangueraonline/repositories/licitation.dart';
+import 'package:anhangueraonline/widgets/cards/document_licitation.dart';
 import 'package:anhangueraonline/widgets/drawer_custom.dart';
+import 'package:anhangueraonline/widgets/drawers/drawer_filter.dart';
 import 'package:flutter/material.dart';
 
 class DocumentsPage extends StatefulWidget {
@@ -12,11 +16,21 @@ class DocumentsPage extends StatefulWidget {
 
 class _DocumentsPageState extends State<DocumentsPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  late final DocumentCategory documentCategory;
+  late List<Licitation> _licitations = [];
+  final LicitationRepository _licitationRepository = LicitationRepository();
+  late final DocumentCategory _documentCategory;
+
+  Future<void> updateResults() async {
+    var licitations = await _licitationRepository.findAll();
+    setState(() {
+      _licitations = licitations;
+    });
+  }
 
   @override
   void initState() {
-    documentCategory = widget.documentCategory;
+    _documentCategory = widget.documentCategory;
+    updateResults();
     super.initState();
   }
 
@@ -30,7 +44,7 @@ class _DocumentsPageState extends State<DocumentsPage> {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          documentCategory.name,
+          _documentCategory.name,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
@@ -41,15 +55,23 @@ class _DocumentsPageState extends State<DocumentsPage> {
         toolbarHeight: 72,
         actions: [
           IconButton(
-            icon: Icon(Icons.filter_alt_outlined), // Ícone do drawer
+            icon: Icon(Icons.filter_alt_outlined),
             onPressed: () {
-              // Abre o drawer quando o ícone for pressionado
               _scaffoldKey.currentState?.openDrawer();
             },
           ),
         ],
       ),
-      drawer: DrawerCustom(),
+      body: Container(
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+        child: _licitations.isNotEmpty ? ListView.separated(
+          itemCount: _licitations.length,
+          separatorBuilder: (context, index) => const SizedBox(height: 16,),
+          itemBuilder: (context, index) =>
+              CardDocumentLicitation(licitation: _licitations[index]),
+        ) : const Text('Carregando...'),
+      ),
+      drawer: DrawerFilter(updateResults: updateResults),
     );
   }
 }
