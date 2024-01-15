@@ -39,14 +39,14 @@ class _AboutPageState extends State<AboutPage> {
                 ),
               ),
               Text(
-                'Anhaguera na Palma da Mão',
+                'Anhanguera Smart',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 16,
               ),
               Text(
-                'Já pensou em ter acesso fácil e rápido aos diversos serviços e informações da Prefeitura de Anhaguera na palma da sua mão? O Anhaguera na Palma da Mão é um aplicativo que auxilia o seu dia a dia como cidadão, e é muito fácil de usar! Conheça os principais benefícios e serviços:',
+                'Já pensou em ter acesso fácil e rápido aos diversos serviços e informações da Prefeitura de Anhaguera na palma da sua mão? O Anhanguera Smart é um aplicativo que auxilia o seu dia a dia como cidadão, e é muito fácil de usar! Conheça os principais benefícios e serviços:',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
@@ -72,7 +72,7 @@ class _AboutPageState extends State<AboutPage> {
                 height: 16,
               ),
               Text(
-                'Seja bem-vindo ao aplicativo Anhaguera na Palma da Mão!',
+                'Seja bem-vindo ao aplicativo Anhanguera Smart!',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               )

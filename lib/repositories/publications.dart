@@ -7,7 +7,7 @@ class PublicationsRepository {
   Future<List<Publication>> findAll() async {
     try {
       var response =
-          await _dio.get('http://192.168.0.13:8000/api/publications');
+          await _dio.get('https://developer.anhanguera.go.gov.br/api/publications');
 
       print(response);
 

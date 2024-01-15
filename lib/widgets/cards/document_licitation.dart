@@ -27,8 +27,19 @@ class CardDocumentLicitation extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('${licitation.modality.name} - ${licitation.number}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),),
-              Text(licitation.descriptionObject ?? '', style: TextStyle(fontSize: 14), maxLines: 2, overflow: TextOverflow.ellipsis,),
+              Text(
+                '${licitation.modality.name} - ${licitation.number}',
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                licitation.descriptionObject,
+                style: const TextStyle(fontSize: 14),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ],
           ),
         ),

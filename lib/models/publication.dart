@@ -39,7 +39,7 @@ class Publication {
       content: json['content'],
       created_at: json['created_at'],
       thumbnail: json['thumbnail']['path'],
-      attachments: json['attachments'] != null ? json['attachments'] : [],
+      attachments: [],
       category: PublicationCategory.fromJson(json['category']),
       draft: json['draft'],
       covid: json['covid'],

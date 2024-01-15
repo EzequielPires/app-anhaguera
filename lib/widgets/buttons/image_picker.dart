@@ -76,8 +76,7 @@ class ButtonImagePicker extends StatelessWidget {
     final XFile? photo = await picker.pickImage(source: ImageSource.camera);
     if (photo == null) return;
 
-    final File file = File(photo.path);
-    imageCrop(file);
+    onImageSelected(File(photo.path));
   }
 
   Future<void> getFromGallery() async {
@@ -85,8 +84,9 @@ class ButtonImagePicker extends StatelessWidget {
 
     if (image == null) return;
 
-    final File file = File(image.path);
-    imageCrop(file);
+    onImageSelected(File(image.path));
+    //final File file = File(image.path);
+    //imageCrop(file);
   }
 
   Future<void> imageCrop(File file) async {

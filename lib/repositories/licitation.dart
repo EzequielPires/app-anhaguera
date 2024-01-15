@@ -7,7 +7,7 @@ class LicitationRepository {
   Future<List<Licitation>> findAll() async {
     try {
       var response =
-          await _dio.get('http://192.168.0.138:8000/api/documents/licitations');
+          await _dio.get('http://192.168.0.19:8000/api/documents/licitations');
 
       if (response.data['success']) {
         var results = response.data['results'] as List;
