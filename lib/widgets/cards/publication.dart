@@ -52,6 +52,7 @@ class CardPublication extends StatelessWidget {
             Image.network(
               'http://developer.anhanguera.go.gov.br/storage/${publication.thumbnail}',
               height: 264,
+              width: double.infinity,
               fit: BoxFit.cover,
             ),
           ],

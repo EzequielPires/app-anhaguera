@@ -89,6 +89,7 @@ class _AddressFormState extends State<AddressForm> {
                               borderSide: BorderSide(color: Colors.black12),
                             ),
                             border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
                           ),
                         ),
                       ),

@@ -88,6 +88,7 @@ class _ConsultSolicitationState extends State<ConsultSolicitation> {
                         borderSide: BorderSide(color: Colors.black12),
                       ),
                       border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
                     ),
                   ),
                 ),

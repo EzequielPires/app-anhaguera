@@ -14,11 +14,22 @@ class _PublicationsPageState extends State<PublicationsPage> {
   final PublicationsRepository publicationsRepository =
       PublicationsRepository();
   List<Publication> publications = [];
+  int page = 1;
+  final ScrollController _scrollController = ScrollController();
 
   Future<void> findProperties() async {
-    var res = await publicationsRepository.findAll();
+    var res = await publicationsRepository.findAll(page: page);
     setState(() {
       publications = res;
+      page = page + 1;
+    });
+  }
+
+  Future<void> loadMoreData() async {
+    var res = await publicationsRepository.findAll(page: page);
+    setState(() {
+      publications = [...publications, ...res];
+      page = page + 1;
     });
   }
 
@@ -27,6 +38,14 @@ class _PublicationsPageState extends State<PublicationsPage> {
     findProperties();
 
     super.initState();
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        // Usuário atingiu o final da lista
+        loadMoreData();
+      }
+    });
   }
 
   @override
@@ -47,6 +66,7 @@ class _PublicationsPageState extends State<PublicationsPage> {
       body: publications.isEmpty ? const CardPublicationSk() : ListView.builder(
         itemCount: publications.length,
         itemBuilder: (context, index) => CardPublication(publication: publications[index],),
+        controller: _scrollController,
       ),
     );
   }
