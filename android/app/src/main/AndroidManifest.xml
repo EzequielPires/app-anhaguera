@@ -19,7 +19,7 @@
         </intent>
     </queries>
     <application
-        android:label="app_anhaguera"
+        android:label="Anhanguera Online"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:enableOnBackInvokedCallback="true"
