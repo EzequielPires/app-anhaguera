@@ -9,8 +9,8 @@ class SectionGridHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverGrid.count(
-      childAspectRatio: .9,
-      crossAxisCount: 3,
+      childAspectRatio: 1.4,
+      crossAxisCount: 2,
       mainAxisSpacing: 8,
       crossAxisSpacing: 8,
       children: [

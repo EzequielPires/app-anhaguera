@@ -11,6 +11,7 @@ List<Category> categories = [
   Category(name: 'Limpeza de Bueiros', image: 'images/bueiro.png', id: 7),
   Category(name: 'Roçagem', image: 'images/rocagem.png', id: 8),
   Category(name: 'Mataburros e Estradas Rurais', image: 'images/animais.png', id: 9),
+  Category(name: 'Animais abandonados', image: 'images/animais.png', id: 10),
 ];
 
 List<DocumentCategory> documentCategories = [

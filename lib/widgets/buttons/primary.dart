@@ -26,7 +26,7 @@ class ButtonPrimary extends StatelessWidget {
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16)))),
         child: isLoading == true
-            ? const CircularProgressIndicator()
+            ? const CircularProgressIndicator(color: Colors.white,)
             : Text(
                 disabled == false || disabled == null ? title : '',
                 style:

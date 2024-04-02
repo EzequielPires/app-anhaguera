@@ -29,7 +29,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace "com.zpris.app_anhaguera"
+    namespace "com.example.app_anhaguera"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 

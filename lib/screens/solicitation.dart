@@ -201,7 +201,7 @@ class _SolicitationPageState extends State<SolicitationPage> {
       
       final res = await repository.create(solicitation);
       if(res is Solicitation) {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SuccessPage(solicitation: res),));
+        await Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SuccessPage(solicitation: res),));
       }
       setState(() {
         isLoading = false;
